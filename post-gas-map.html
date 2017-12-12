@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Info windows</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      // This example displays a marker at the center of Australia.
+      // When the user clicks the marker, an info window opens.
+		var map;
+      function initMap() {
+		
+		
+		
+         map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          center: new google.maps.LatLng(24.176799, 120.637661),
+		  mapTypeId: 'roadmap'
+        });
+		var icons ={
+		gasstation:{
+			icon:'./gasstation.png'
+		},
+		postoffice:{
+			icon:'./postoffice.png'
+		}
+		};
+		var features = [
+		{
+		position: new google.maps.LatLng(24.182416, 120.602728),
+		type: 'postoffice',location:'臺中市西屯區臺灣大道4段1727號',name:'東海大學郵局(臺中5支)'
+		}, {
+		position: new google.maps.LatLng(24.175311, 120.649123),
+		type: 'postoffice',location:'臺中市西屯區河南路2段268號',name:'	臺中逢甲郵局(臺中25支)'
+		}, {
+		position: new google.maps.LatLng(24.176729, 120.637643),
+		type: 'postoffice',location:'臺中市西屯區黎明路3段130號',name:'	臺中西屯郵局(臺中30支)'
+		}, {
+		position: new google.maps.LatLng(24.164733, 120.654229),
+		type: 'postoffice',location:'臺中市西屯區青海路1段83號',name:'	臺中何厝郵局(臺中44支)'
+		}, {
+		position: new google.maps.LatLng(24.169967, 120.606444),
+		type: 'postoffice',location:'臺中市西屯區工業區六路10號',name:'臺中工業區郵局(臺中46支)'
+		}, {
+		position: new google.maps.LatLng(24.183761, 120.603702),
+		type: 'postoffice',location:'臺中市西屯區臺灣大道4段1650號',name:'臺中榮總郵局(臺中52支)'
+		}, {
+		position: new google.maps.LatLng(24.190632, 120.612337),
+		type: 'postoffice',location:'臺中市西屯區永安里西屯路3段166-80號',name:'臺中永安郵局(臺中61支)'
+		}, {
+		position: new google.maps.LatLng(24.156465, 120.652960),
+		type: 'postoffice',location:'臺中市西屯區大隆路60、62號	',name:	'臺中大隆路郵局(臺中67支)'
+		}, {
+		position: new google.maps.LatLng(24.183482, 120.618557),
+		type: 'postoffice',location:'臺中市西屯區福順路318號',name:'臺中福安郵局(臺中69支)'
+		}, {
+		position: new google.maps.LatLng(24.183102, 120.614588),
+		type: 'gasstation',location:'臺中市西屯區福和里臺灣大道四段1047號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.171327, 120.643927),
+		type: 'gasstation',location:'臺中市西屯區青海路二段211號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.162809, 120.650080),
+		type: 'gasstation',location:'臺中市西屯區文心路三段2號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.182717, 120.601050),
+		type: 'gasstation',location:'臺中市西屯區台灣大道四段1832號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.166024, 120.618554),
+		type: 'gasstation',location:'臺中市西屯區安和路51-8號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.172152, 120.645403),
+		type: 'gasstation',location:'臺中市西屯區河南路二段341號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.184428, 120.590350),
+		type: 'gasstation',location:'臺中市西屯區福聯里臺灣大道五段142號1樓',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.198397, 120.642557),
+		type: 'gasstation',location:'臺中市西屯區廣福路191號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.208196, 120.651019),
+		type: 'gasstation',location:'臺中市西屯區中清路三段457號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.179429, 120.634369),
+		type: 'gasstation',location:'臺中市西屯區環中路二段1286號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.162864, 120.628394),
+		type: 'gasstation',location:'臺中市西屯區環中路3段800號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.187810, 120.618513),
+		type: 'gasstation',location:'臺中市西屯區福康路199號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.171518, 120.659824),
+		type: 'gasstation',location:'臺中市西屯區文心路3段187號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.161823, 120.650507),
+		type: 'gasstation',location:'臺中市西屯區台灣大道2段917號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.201229, 120.609961),
+		type: 'gasstation',location:'臺中市西屯區林厝里東大路一段1220號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.195204, 120.644246),
+		type: 'gasstation',location:'臺中市西屯區環中路二段698號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.200792, 120.656965),
+		type: 'gasstation',location:'臺中市西屯區環中路一段2490號',name:'加油站'
+		}, {
+		position: new google.maps.LatLng(24.205149, 120.629083),
+		type: 'gasstation',location:'臺中市西屯區福雅路693號',name:'加油站'
+		}
+		];
+		features.forEach(function(features) {
+			var marker = new google.maps.Marker({
+				position: features.position,
+				icon: icons[features.type].icon,
+				map: map
+		});
+        var contentString = '<div>'+      
+            '<p><b>	'+features.name+'</b>,</p>'+		
+			'<p>'+features.location+'</p>'+            
+            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+		
+        
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      });
+	  }
+	  
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2mI5hhMd4R_pzTqfxM0bMUzLf8qKcU8k&callback=initMap">
+    </script>
+  </body>
+</html>
